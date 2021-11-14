@@ -1,0 +1,48 @@
+version: "3"
+
+
+volumes:
+  {{cookiecutter.wp_volume_name}}: {}
+  {{cookiecutter.db_volume_name}}: {}
+
+services:
+
+  wp:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 8000:80
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: {{cookiecutter.db_user}}
+      WORDPRESS_DB_PASSWORD: {{cookiecutter.db_password}}
+      WORDPRESS_DB_NAME: {{cookiecutter.db_name}}
+      WORDPRESS_DEBUG: "1"
+      WORDPRESS_CONFIG_EXTRA: |
+          define( 'WP_DEBUG', true );
+          define( 'WP_DEBUG_DISPLAY', false );
+          define( 'WP_DEBUG_LOG', true );
+          define('FS_METHOD', 'direct');
+          define( 'SCRIPT_DEBUG', true );
+    volumes:
+      - {{cookiecutter.wp_volume_name}}:/var/www/html
+    depends_on:
+      - db
+      - mailhog
+
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_DATABASE: {{cookiecutter.db_name}}
+      MYSQL_USER: {{cookiecutter.db_user}}
+      MYSQL_PASSWORD: {{cookiecutter.db_password}}
+      MYSQL_ROOT_PASSWORD: {{cookiecutter.db_root_password}}
+    volumes:
+      - {{cookiecutter.db_volume_name}}:/var/lib/mysql
+
+  mailhog:
+    image: mailhog/mailhog
+    ports:
+      - 1025:1025
+      - 8025:8025
