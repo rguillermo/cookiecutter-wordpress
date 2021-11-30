@@ -5,7 +5,7 @@
     "wp_volume_name": "wp_{{ cookiecutter.project_slug }}",
     "db_volume_name": "wp_db_data_{{ cookiecutter.project_slug }}",
     "db_user": "admin",
-    "db_name": "wp_{{ cookiecutter.db_user }}",
+    "db_name": "{{ cookiecutter.project_slug }}",
     "db_password": "admin",
     "db_root_password": "admin"
 }
