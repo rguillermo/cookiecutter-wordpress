@@ -1,0 +1,11 @@
+{
+    "name": "{{cookiecutter.project_name}}",
+    "license": "{{cookiecutter.license}}",
+    "scripts": {
+        "up": "cd {{cookiecutter.wordpress_dirname}} && docker-compose up -d",
+        "down": "cd {{cookiecutter.wordpress_dirname}} && docker-compose down",
+        "logs": "cd {{cookiecutter.wordpress_dirname}} && docker-compose logs",
+        "volumerm": "cd {{cookiecutter.wordpress_dirname}} && docker volume rm {{cookiecutter.wp_volume_name}} {{cookiecutter.db_volume_name}}",
+        "build": "cd {{cookiecutter.wordpress_dirname}} && docker-compose build"
+    }
+}
