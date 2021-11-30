@@ -1,6 +1,7 @@
 {
     "project_name": "WordPress Dev",
     "project_slug": "{{ cookiecutter.project_name.lower().replace(' ', '_') }}",
+    "license": ["MIT", "BSD-3", "GNU GPL v3.0", "Apache Software License 2.0"],
     "wp_volume_name": "wp_{{ cookiecutter.project_slug }}",
     "db_volume_name": "wp_db_data_{{ cookiecutter.project_slug }}",
     "db_user": "admin",
